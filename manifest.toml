@@ -1,0 +1,71 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "joplin"
+name = "Joplin"
+description.en = "Note-taking appliction"
+description.fr = "Application de prise de notes"
+
+version = "2.13.8~ynh1"
+
+maintainers = [""]
+
+[upstream]
+license = "AGPL-3.0-or-later"
+website = "https://joplinapp.org/"
+admindoc = "https://joplinapp.org/help/"
+code = "https://github.com/laurent22/joplin/"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+
+ldap = false
+
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+    [resources.sources]
+
+        [resources.sources.main]
+        url = "https://github.com/laurent22/joplin/archive/refs/tags/v2.13.8.tar.gz"
+        sha256 = "4ea9ab601ba5d2edf6fb452638ba10404544e59ad05ff428db31764592ab012c"
+        autoupdate.strategy = "latest_github_tag"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.show_tile = false
+    api.protected = true
+
+    [resources.ports]
+    main.default = 22300
+
+    [resources.apt]
+    packages = "postgresql, postgresql-client"
+    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
+    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
+    extras.yarn.packages = "yarn"
+
+    [resources.database]
+    type = "postgresql"
