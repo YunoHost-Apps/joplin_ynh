@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "joplin"
 name = "Joplin"
-description.en = "Note-taking appliction"
-description.fr = "Application de prise de notes"
+description.en = "Note taking and to-do application with synchronisation capabilities"
+description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
 version = "2.13.8~ynh1"
 
