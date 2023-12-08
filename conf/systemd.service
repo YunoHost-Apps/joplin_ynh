@@ -6,16 +6,6 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
-
-Environment="APP_BASE_URL=https://__DOMAIN__"
-Environment="APP_PORT=__PORT__"
-Environment="DB_CLIENT=pg"
-Environment="POSTGRES_PASSWORD=__DB_PWD__"
-Environment="POSTGRES_DATABASE=__DB_NAME__"
-Environment="POSTGRES_USER=__DB_USER__"
-Environment="POSTGRES_PORT=5432"
-Environment="POSTGRES_HOST=localhost"
-
 WorkingDirectory=__INSTALL_DIR__/
 ExecStart=/usr/bin/yarn __INSTALL_DIR__/packages/server start
 
