@@ -9,7 +9,7 @@ description.fr = "Application de prise de notes"
 
 version = "2.13.8~ynh1"
 
-maintainers = [""]
+maintainers = ["eric_G"]
 
 [upstream]
 license = "AGPL-3.0-or-later"
