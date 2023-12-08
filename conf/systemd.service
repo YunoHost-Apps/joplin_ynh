@@ -7,7 +7,7 @@ Type=simple
 User=__APP__
 Group=__APP__
 
-Environment="APP_BASE_URL=https://__DOMAIN__"
+Environment="APP_BASE_URL=https://__DOMAIN____PATH__"
 Environment="APP_PORT=__PORT__"
 Environment="DB_CLIENT=pg"
 Environment="POSTGRES_PASSWORD=__DB_PWD__"
