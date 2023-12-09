@@ -4,12 +4,12 @@ packaging_format = 2
 
 id = "joplin"
 name = "Joplin"
-description.en = "Note-taking appliction"
-description.fr = "Application de prise de notes"
+description.en = "Note taking and to-do application with synchronisation capabilities"
+description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
 version = "2.13.8~ynh1"
 
-maintainers = [""]
+maintainers = ["eric_G"]
 
 [upstream]
 license = "AGPL-3.0-or-later"
@@ -48,6 +48,7 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
 
