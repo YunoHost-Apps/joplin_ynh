@@ -63,7 +63,7 @@ pushd $install_dir
  	ynh_use_nodejs
 	sudo -u $app env $ynh_node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
 	sudo -u $app env $ynh_node_load_PATH yarn cache clean
-	rm -rf .yarn/berry
+	ynh_secure_remove .yarn/berry
 popd
 
 #=================================================
