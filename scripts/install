@@ -9,6 +9,9 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+admin_pass=$(ynh_string_random --length=24)
+ynh_app_setting_set --app=$app --key=admin_pass --value=$admin_pass
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -74,7 +77,18 @@ popd
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting services..."
+
+#=================================================
+# CHANGING DEFAULT ADMIN PASSWORD
+#=================================================
+
+ynh_script_progression --message="Changing default admin password..." --weight=1
+
+hashed_pwd=$(bcrypt_password "$admin_pass")
+
+ynh_psql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" <<< \
+  "UPDATE users SET password='$hashed_pwd' WHERE email='admin@localhost'"
 
 #=================================================
 # END OF SCRIPT
