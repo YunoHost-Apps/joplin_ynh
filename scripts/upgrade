@@ -43,6 +43,22 @@ ynh_script_progression --message="Upgrading dependencies..." --weight=5
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
+# BUILD
+#=================================================
+
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+  ynh_script_progression --message="Building $app..." --weight=10
+  pushd $install_dir/packages/server
+    ynh_use_nodejs
+    sudo -u $app env $ynh_node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
+    sudo -u $app env $ynh_node_load_PATH yarn build
+    sudo -u $app env $ynh_node_load_PATH yarn cache clean
+    ynh_secure_remove .yarn/berry
+  popd
+fi
+
+#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1

@@ -38,6 +38,9 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
+    [install.admin]
+    type = "user"
+
 [resources]
 
     [resources.sources]
@@ -63,7 +66,7 @@ ram.runtime = "50M"
     main.default = 22300
 
     [resources.apt]
-    packages = "postgresql, postgresql-client"
+    packages = "postgresql, postgresql-client, python3-bcrypt"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"
