@@ -88,7 +88,6 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --l
 #=================================================
 # CHANGING DEFAULT ADMIN PASSWORD
 #=================================================
-
 ynh_script_progression --message="Changing default admin password..." --weight=1
 
 hashed_pwd=$(bcrypt_password "$admin_pass")
