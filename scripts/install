@@ -9,6 +9,14 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+admin_pass=$(ynh_string_random --length=24)
+admin_mail=$(ynh_user_get_info --username=$admin --key="mail")
+admin_name=$(ynh_user_get_info --username=$admin --key="fullname")
+
+# Store these values even if we don't need them, so they are printed in the post-install message
+ynh_app_setting_set --app=$app --key=admin_pass --value=$admin_pass
+ynh_app_setting_set --app=$app --key=admin_mail --value=$admin_mail
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -57,11 +65,12 @@ chown $app:$app "$install_dir/.env"
 #=================================================
 # INSTALL JOPLIN
 #=================================================
-ynh_script_progression --message="Installing $app..." --weight=10
+ynh_script_progression --message="Building $app..." --weight=10
 
-pushd $install_dir
+pushd $install_dir/packages/server
  	ynh_use_nodejs
 	sudo -u $app env $ynh_node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
+	sudo -u $app env $ynh_node_load_PATH yarn build
 	sudo -u $app env $ynh_node_load_PATH yarn cache clean
 	ynh_secure_remove .yarn/berry
 popd
@@ -74,7 +83,20 @@ popd
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting services..."
+
+#=================================================
+# CHANGING DEFAULT ADMIN PASSWORD
+#=================================================
+ynh_script_progression --message="Changing default admin password..." --weight=1
+
+hashed_pwd=$(bcrypt_password "$admin_pass")
+
+ynh_psql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" <<< "
+  UPDATE users
+  SET password='$hashed_pwd', email='$admin_mail', full_name='$admin_name'
+  WHERE email='admin@localhost'
+"
 
 #=================================================
 # END OF SCRIPT

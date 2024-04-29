@@ -7,7 +7,7 @@ name = "Joplin"
 description.en = "Note taking and to-do application with synchronisation capabilities"
 description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
-version = "2.13.8~ynh1"
+version = "2.13.9~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -38,13 +38,16 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
+    [install.admin]
+    type = "user"
+
 [resources]
 
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/laurent22/joplin/archive/refs/tags/v2.13.8.tar.gz"
-        sha256 = "4ea9ab601ba5d2edf6fb452638ba10404544e59ad05ff428db31764592ab012c"
+        url = "https://github.com/laurent22/joplin/archive/refs/tags/v2.14.20.tar.gz"
+        sha256 = "919e9300e66bc6c24a282cbf93c43c228cdfe3227bdb1eaa50fdadef4734901b"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -63,7 +66,7 @@ ram.runtime = "50M"
     main.default = 22300
 
     [resources.apt]
-    packages = "postgresql, postgresql-client"
+    packages = "postgresql, postgresql-client, python3-bcrypt"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"
