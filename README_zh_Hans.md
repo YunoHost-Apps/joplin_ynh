@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Joplin
+# YunoHost 上的 Joplin
 
 [![集成程度](https://dash.yunohost.org/integration/joplin.svg)](https://dash.yunohost.org/appci/app/joplin) ![工作状态](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
 
