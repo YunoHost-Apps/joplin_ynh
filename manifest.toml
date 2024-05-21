@@ -7,7 +7,7 @@ name = "Joplin"
 description.en = "Note taking and to-do application with synchronisation capabilities"
 description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
-version = "3.0.6~ynh1"
+version = "3.0.6~ynh2"
 
 maintainers = ["eric_G"]
 
@@ -26,9 +26,9 @@ ldap = false
 
 sso = false
 
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+disk = "6G"
+ram.build = "5G"
+ram.runtime = "280M"
 
 [install]
     [install.domain]
@@ -66,7 +66,7 @@ ram.runtime = "50M"
     main.default = 22300
 
     [resources.apt]
-    packages = "postgresql, postgresql-client, python3-bcrypt"
+    packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"

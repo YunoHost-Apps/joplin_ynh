@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Joplin
+# YunoHost 上的 Joplin
 
 [![集成程度](https://dash.yunohost.org/integration/joplin.svg)](https://dash.yunohost.org/appci/app/joplin) ![工作状态](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
 
@@ -18,7 +18,7 @@
 
 Joplin is a free, open source note taking and to-do application, which can handle a large number of notes organised into notebooks. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in Markdown format.
 
-**分发版本：** 3.0.6~ynh1
+**分发版本：** 3.0.6~ynh2
 
 ## 截图
 
