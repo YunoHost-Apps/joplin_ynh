@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 Joplin is a free, open source note taking and to-do application, which can handle a large number of notes organised into notebooks. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in Markdown format.
 
-**Shipped version:** 3.0.6~ynh2
+**Shipped version:** 3.0.7~ynh1
 
 ## Screenshots
 
