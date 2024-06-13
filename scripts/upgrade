@@ -49,7 +49,6 @@ pushd $install_dir/packages/server
   ynh_secure_remove .yarn/berry
 popd
 
-
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
