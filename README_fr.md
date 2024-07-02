@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Joplin pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/joplin.svg)](https://dash.yunohost.org/appci/app/joplin) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/joplin.svg)](https://ci-apps.yunohost.org/ci/apps/joplin/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
 
 [![Installer Joplin avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=joplin)
 
@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Joplin server est une application de prise de notes et de tâches, qui peut gérer un grand nombre de notes organisées dans des cahiers. Les notes sont consultables, peuvent être copiées, étiquetées et modifiées directement depuis les applications ou depuis votre propre éditeur de texte. Les notes sont au format Markdown.
 
-**Version incluse :** 3.0.9~ynh2
+**Version incluse :** 3.0.12~ynh1
 
 ## Captures d’écran
 
