@@ -28,7 +28,7 @@ Joplin server is a note taking and to-do application, which can handle a large n
 
 - Website aplikasi resmi: <https://joplinapp.org/>
 - Dokumentasi admin resmi: <https://joplinapp.org/help/>
-- Repositori kode aplikasi hulu: <https://github.com/laurent22/joplin/>
+- Depot kode aplikasi hulu: <https://github.com/laurent22/joplin/>
 - Gudang YunoHost: <https://apps.yunohost.org/app/joplin>
 - Laporkan bug: <https://github.com/YunoHost-Apps/joplin_ynh/issues>
 
