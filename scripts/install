@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -14,39 +8,38 @@ admin_mail=$(ynh_user_get_info --username=$admin --key="mail")
 admin_name=$(ynh_user_get_info --username=$admin --key="fullname")
 
 # Store these values even if we don't need them, so they are printed in the post-install message
-ynh_app_setting_set --app=$app --key=admin_pass --value=$admin_pass
-ynh_app_setting_set --app=$app --key=admin_mail --value=$admin_mail
+ynh_app_setting_set --key=admin_pass --value=$admin_pass
+ynh_app_setting_set --key=admin_mail --value=$admin_mail
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=7
+ynh_script_progression "Installing dependencies..."
 
 # Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_nodejs_install
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-chown -R $app:www-data "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+ynh_script_progression "Adding system configurations related to $app..."
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Note-taking appliction" --log="/var/log/$app/$app.log"
 
@@ -55,44 +48,42 @@ yunohost service add $app --description="Note-taking appliction" --log="/var/log
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression "Adding $app's configuration..."
 
-ynh_add_config --template=".env" --destination="$install_dir/.env"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
-chmod 400 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/.env"
 
 #=================================================
 # INSTALL JOPLIN
 #=================================================
-ynh_script_progression --message="Building $app..." --weight=10
+ynh_script_progression "Building $app..."
 
 pushd $install_dir/packages/server
- 	ynh_use_nodejs
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
-	ynh_secure_remove .yarn/berry
+
+	ynh_hide_warnings ynh_exec_as_app node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
+	ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn build
+	ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn cache clean
+	ynh_safe_rm .yarn/berry
 popd
 
 #=================================================
-# GENERIC FINALIZATION
-#=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting services..."
+ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="Starting services..."
 
 #=================================================
 # CHANGING DEFAULT ADMIN PASSWORD
 #=================================================
-ynh_script_progression --message="Changing default admin password..." --weight=1
+ynh_script_progression "Changing default admin password..."
 
 hashed_pwd=$(bcrypt_password "$admin_pass")
 
-ynh_psql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" <<< "
+ynh_psql_db_shell <<< "
   UPDATE users
   SET password='$hashed_pwd', email='$admin_mail', full_name='$admin_name'
   WHERE email='admin@localhost'
@@ -101,4 +92,4 @@ ynh_psql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name"
 #=================================================
 # END OF SCRIPT
 #=================================================
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
