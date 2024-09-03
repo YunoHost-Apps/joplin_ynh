@@ -11,7 +11,6 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # RESTORE THE PostgreSQL DATABASE
 #=================================================
@@ -32,8 +31,6 @@ ynh_nodejs_install
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
-#=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
@@ -48,7 +45,6 @@ yunohost service add $app --description="Note-taking appliction" --log="/var/log
 #=================================================
 ynh_script_progression "Reloading NGINX web server and $app's service..."
 
-# Typically you only have either $app or php-fpm but not both at the same time...
 ynh_systemctl --service=$app --action="start" --log_path="systemd"
 
 ynh_systemctl --service=nginx --action=reload

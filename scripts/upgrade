@@ -17,16 +17,13 @@ ynh_systemctl --service=$app --action="stop" --log_path="systemd"
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir" --keep=".env"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
 ynh_script_progression "Upgrading dependencies..."
 
-# Install Nodejs
 ynh_nodejs_install
 
 #=================================================
@@ -35,10 +32,9 @@ ynh_nodejs_install
 ynh_script_progression "Building $app..."
 
 pushd $install_dir/packages/server
-
-  ynh_hide_warnings ynh_exec_as_app node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
-  ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn build
-  ynh_hide_warnings ynh_exec_as_app node_load_PATH yarn cache clean
+  ynh_hide_warnings ynh_exec_as_app BUILD_SEQUENCIAL=1 yarn install --inline-builds
+  ynh_hide_warnings ynh_exec_as_app yarn build
+  ynh_hide_warnings ynh_exec_as_app yarn cache clean
   ynh_safe_rm .yarn/berry
 popd
 
@@ -61,9 +57,6 @@ yunohost service add $app --description="Note-taking appliction" --log="/var/log
 ynh_script_progression "Updating configuration..."
 
 ynh_config_add --template=".env" --destination="$install_dir/.env"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/.env"
 
 #=================================================
 # START SYSTEMD SERVICE
