@@ -18,7 +18,7 @@ No se debe editar a mano.
 
 Joplin server is a note taking and to-do application, which can handle a large number of notes organised into notebooks. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in Markdown format.
 
-**Versión actual:** 3.1.8~ynh1
+**Versión actual:** 3.1.9~ynh1
 
 ## Capturas
 
@@ -34,7 +34,7 @@ Joplin server is a note taking and to-do application, which can handle a large n
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/joplin_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/joplin_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
