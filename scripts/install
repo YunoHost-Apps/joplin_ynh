@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -22,17 +16,13 @@ ynh_app_setting_set --app=$app --key=admin_mail --value=$admin_mail
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=7
 
-# Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
-#=================================================
-# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
 chown -R $app:www-data "$install_dir"
@@ -42,10 +32,8 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
-# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_add_nginx_config
 
-# Create a dedicated systemd config
 ynh_add_systemd_config
 
 yunohost service add $app --description="Note-taking appliction" --log="/var/log/$app/$app.log"
@@ -75,8 +63,6 @@ pushd $install_dir/packages/server
 	ynh_secure_remove .yarn/berry
 popd
 
-#=================================================
-# GENERIC FINALIZATION
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
