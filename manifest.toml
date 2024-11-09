@@ -21,9 +21,7 @@ code = "https://github.com/laurent22/joplin/"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
-
 ldap = false
-
 sso = false
 
 disk = "5G"
