@@ -38,7 +38,7 @@ ynh_add_config --template=".env" --destination="$install_dir/.env"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"  --line_match="App: Call this for testing"
 
 #=================================================
 # END OF SCRIPT

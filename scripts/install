@@ -69,7 +69,7 @@ popd
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting services..."
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="App: Call this for testing"
 
 #=================================================
 # CHANGING DEFAULT ADMIN PASSWORD
