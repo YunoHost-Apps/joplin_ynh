@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Joplin for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/joplin.svg)](https://ci-apps.yunohost.org/ci/apps/joplin/) ![Working status](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/joplin)](https://ci-apps.yunohost.org/ci/apps/joplin/)
+![Working status](https://apps.yunohost.org/badge/state/joplin)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/joplin)
 
 [![Install Joplin with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=joplin)
 
