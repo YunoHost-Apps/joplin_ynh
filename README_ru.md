@@ -5,7 +5,9 @@
 
 # Joplin для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/joplin.svg)](https://ci-apps.yunohost.org/ci/apps/joplin/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/joplin)](https://ci-apps.yunohost.org/ci/apps/joplin/)
+![Состояние работы](https://apps.yunohost.org/badge/state/joplin)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/joplin)
 
 [![Установите Joplin с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=joplin)
 
