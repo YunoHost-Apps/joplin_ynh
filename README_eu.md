@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Joplin YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/joplin.svg)](https://ci-apps.yunohost.org/ci/apps/joplin/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/joplin.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/joplin.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/joplin)](https://ci-apps.yunohost.org/ci/apps/joplin/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/joplin)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/joplin)
 
 [![Instalatu Joplin YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=joplin)
 
