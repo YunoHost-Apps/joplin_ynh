@@ -65,10 +65,6 @@ ram.runtime = "280M"
 
     [resources.apt]
     packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
-    
-    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
-    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
-    extras.yarn.packages = "yarn"
 
     [resources.database]
     type = "postgresql"

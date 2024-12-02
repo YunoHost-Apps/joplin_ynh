@@ -57,7 +57,8 @@ ynh_script_progression --message="Building $app..." --weight=10
 
 pushd $install_dir/packages/server
  	ynh_use_nodejs
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH BUILD_SEQUENCIAL=1 yarn install --inline-builds
+	ynh_exec_warn_less corepack enable && corepack prepare pnpm@latest --activate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
 	ynh_secure_remove .yarn/berry
