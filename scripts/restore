@@ -35,6 +35,7 @@ ynh_script_progression --message="Reinstalling dependencies..." --weight=7
 
 # Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
