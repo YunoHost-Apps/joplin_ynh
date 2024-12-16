@@ -18,9 +18,10 @@ admindoc = "https://joplinapp.org/help/"
 code = "https://github.com/laurent22/joplin/"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 12.0.8"
 architectures = "all"
 multi_instance = true
+
 ldap = false
 sso = false
 
