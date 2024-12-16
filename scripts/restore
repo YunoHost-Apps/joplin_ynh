@@ -11,6 +11,16 @@ ynh_script_progression "Restoring the app main directory..."
 ynh_restore "$install_dir"
 
 #=================================================
+# RESTORE THE DATA DIRECTORY
+#=================================================
+ynh_script_progression --message="Restoring data directory..." --weight=2
+
+# Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
+ynh_restore_file --origin_path="$data_dir" --not_mandatory
+
+chown -R $app: "$data_dir"
+
+#=================================================
 # RESTORE THE PostgreSQL DATABASE
 #=================================================
 ynh_script_progression "Restoring the PostgreSQL database..."
@@ -23,6 +33,9 @@ ynh_psql_db_shell < ./db.sql
 ynh_script_progression "Reinstalling dependencies..."
 
 ynh_nodejs_install
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
@@ -41,7 +54,7 @@ yunohost service add $app --description="Note-taking appliction" --log="/var/log
 #=================================================
 ynh_script_progression "Reloading NGINX web server and $app's service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="App: Call this for testing"
 
 ynh_systemctl --service=nginx --action=reload
 
