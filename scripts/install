@@ -48,7 +48,6 @@ mv $install_dir/src/tsconfig.json $install_dir/build
 mv $install_dir/src/packages/turndown $install_dir/build/packages/turndown
 mv $install_dir/src/packages/turndown-plugin-gfm $install_dir/build/packages/turndown-plugin-gfm
 mv $install_dir/src/packages/fork-htmlparser2 $install_dir/build/packages/fork-htmlparser2
-mv $install_dir/src/packages/server/package*.json $install_dir/build/packages/server/
 mv $install_dir/src/packages/fork-sax $install_dir/build/packages/fork-sax
 mv $install_dir/src/packages/fork-uslug $install_dir/build/packages/fork-uslug
 mv $install_dir/src/packages/htmlpack $install_dir/build/packages/htmlpack
