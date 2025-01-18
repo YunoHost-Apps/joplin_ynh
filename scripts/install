@@ -65,7 +65,6 @@ pushd $install_dir/build
  	ynh_use_nodejs
 	ynh_exec_warn_less corepack enable && corepack prepare yarn@3.8.3 --activate
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
 	ynh_secure_remove --file="$install_dir/build/.yarn/berry"
 popd
