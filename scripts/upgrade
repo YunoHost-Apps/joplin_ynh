@@ -29,11 +29,13 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=1
 
-if $(ynh_compare_current_package_version --comparison lt --version "3.2.11~ynh2")
+if $(ynh_compare_current_package_version --comparison le --version "2.7.0~ynh4")
 then
 	# Purge old root directory's contents
 	ynh_script_progression --message="Removing old files..." --weight=2
-  ynh_secure_remove --file="$install_dir/*"
+	tmp=$(mktemp -d)
+	mv -f $install_dir/* $install_dir/.[!.]* $tmp
+	ynh_secure_remove --file="$tmp"
 fi
 
 ynh_secure_remove --file="$install_dir/packages"
