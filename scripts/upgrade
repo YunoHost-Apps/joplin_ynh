@@ -29,10 +29,21 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=1
 
-# Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir" --keep=".env" --full_replace=1
+if $(ynh_compare_current_package_version --comparison lt --version "3.2.11~ynh2")
+then
+	# Purge old root directory's contents
+	ynh_script_progression --message="Removing old files..." --weight=2
+	tmp=$(mktemp -d)
+	mv -f $install_dir/* $install_dir/.[!.]* $tmp
+	ynh_secure_remove --file="$tmp"
+fi
 
-chown -R $app:www-data "$install_dir"
+ynh_secure_remove --file="$install_dir/packages"
+
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir/src"
+
+chown -R $app:www-data "$install_dir/src"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -49,14 +60,45 @@ chown $app:$app "$install_dir/.env"
 #=================================================
 ynh_script_progression --message="Building $app..." --weight=10
 
-pushd $install_dir/packages/server
-  ynh_use_nodejs
-  ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
-  ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0 BUILD_SEQUENCIAL=1 yarn install --inline-builds
-  ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
-  ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
-  ynh_secure_remove .yarn/berry
+mkdir $install_dir/build
+mkdir $install_dir/build/.yarn
+mkdir $install_dir/build/packages
+chown -R $app:www-data "$install_dir/build"
+
+mv $install_dir/src/.yarn/plugins $install_dir/build/.yarn/plugins
+mv $install_dir/src/.yarn/releases $install_dir/build/.yarn/releases
+mv $install_dir/src/.yarn/patches $install_dir/build/.yarn/patches
+mv $install_dir/src/package.json $install_dir/build
+mv $install_dir/src/.yarnrc.yml $install_dir/build
+mv $install_dir/src/yarn.lock $install_dir/build
+mv $install_dir/src/gulpfile.js $install_dir/build
+mv $install_dir/src/tsconfig.json $install_dir/build
+mv $install_dir/src/packages/turndown $install_dir/build/packages/turndown
+mv $install_dir/src/packages/turndown-plugin-gfm $install_dir/build/packages/turndown-plugin-gfm
+mv $install_dir/src/packages/fork-htmlparser2 $install_dir/build/packages/fork-htmlparser2
+mv $install_dir/src/packages/fork-sax $install_dir/build/packages/fork-sax
+mv $install_dir/src/packages/fork-uslug $install_dir/build/packages/fork-uslug
+mv $install_dir/src/packages/htmlpack $install_dir/build/packages/htmlpack
+mv $install_dir/src/packages/renderer $install_dir/build/packages/renderer
+mv $install_dir/src/packages/tools $install_dir/build/packages/tools
+mv $install_dir/src/packages/utils $install_dir/build/packages/utils
+mv $install_dir/src/packages/lib $install_dir/build/packages/lib
+mv $install_dir/src/packages/server $install_dir/build/packages/server
+
+ynh_replace_string --match_string="^.*onenote-converter.*$" --replace_string=" " --target_file="$install_dir/build/packages/lib/package.json"
+
+ynh_secure_remove --file="$install_dir/src"
+
+pushd $install_dir/build
+ 	ynh_use_nodejs
+	ynh_exec_warn_less corepack enable && corepack prepare yarn@3.8.3 --activate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
+	ynh_secure_remove --file="$install_dir/build/.yarn/berry"
 popd
+
+mv $install_dir/build/packages $install_dir
+ynh_secure_remove --file="$install_dir/build"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
