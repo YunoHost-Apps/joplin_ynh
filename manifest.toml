@@ -7,7 +7,7 @@ name = "Joplin"
 description.en = "Note taking and to-do application with synchronisation capabilities"
 description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
-version = "3.2.11~ynh1"
+version = "3.2.11~ynh2"
 
 maintainers = ["eric_G"]
 
