@@ -20,7 +20,7 @@ Hij mag NIET handmatig aangepast worden.
 
 Joplin server is a note taking and to-do application, which can handle a large number of notes organised into notebooks. The notes are searchable, can be copied, tagged and modified either from the applications directly or from your own text editor. The notes are in Markdown format.
 
-**Geleverde versie:** 3.2.11~ynh1
+**Geleverde versie:** 3.2.12~ynh1
 
 ## Schermafdrukken
 
