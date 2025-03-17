@@ -44,15 +44,17 @@ ram.runtime = "280M"
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.3.3.tar.gz"
-        sha256 = "7dcdc27e8b479d357f564de023e6ec28cda85c95f98b856217dcfcb8ae2dde4d"
-        autoupdate.strategy = "latest_github_tag"
+    [resources.sources.main]
+    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.3.3.tar.gz"
+    sha256 = "7dcdc27e8b479d357f564de023e6ec28cda85c95f98b856217dcfcb8ae2dde4d"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
     allow_email = true
 
     [resources.install_dir]
+
+    [resources.data_dir]
 
     [resources.permissions]
     main.url = "/"
@@ -63,8 +65,6 @@ ram.runtime = "280M"
 
     [resources.ports]
     main.default = 22300
-
-    [resources.data_dir]
 
     [resources.apt]
     packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
