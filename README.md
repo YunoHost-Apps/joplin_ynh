@@ -4,14 +4,14 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="https://raw.githubusercontent.com/YunoHost/apps/master/logos/joplin.png" width="32px" alt="Logo of Joplin">
+  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/joplin.png" width="32px" alt="Logo of Joplin">
   Joplin, packaged for YunoHost
 </h1>
 
 Note taking and to-do application with synchronisation capabilities
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://joplinapp.org/)
-![Version: 3.3.4~ynh1](https://img.shields.io/badge/Version-3.3.4~ynh1-rgba(0,150,0,1)?style=for-the-badge)
+[![Version: 3.3.9~ynh1](https://img.shields.io/badge/Version-3.3.9~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/joplin/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/joplin"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
