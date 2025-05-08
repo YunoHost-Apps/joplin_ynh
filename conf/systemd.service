@@ -8,8 +8,8 @@ User=__APP__
 Group=__APP__
 Environment="PATH=__PATH_WITH_NODEJS__"
 EnvironmentFile=__INSTALL_DIR__/.env
-WorkingDirectory=__INSTALL_DIR__/
-ExecStart==__NODEJS_DIR__/yarn packages/server start
+WorkingDirectory=__INSTALL_DIR__/packages/server
+ExecStart=__NODEJS_PATH__/node dist/app.js
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these

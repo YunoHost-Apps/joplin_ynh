@@ -7,9 +7,9 @@ name = "Joplin"
 description.en = "Note taking and to-do application with synchronisation capabilities"
 description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
-version = "3.2.4~ynh1"
+version = "3.3.10~ynh1"
 
-maintainers = ["eric_G"]
+maintainers = []
 
 [upstream]
 license = "AGPL-3.0-or-later"
@@ -18,7 +18,7 @@ admindoc = "https://joplinapp.org/help/"
 code = "https://github.com/laurent22/joplin/"
 
 [integration]
-yunohost = ">= 12.0.8"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -45,15 +45,17 @@ ram.runtime = "280M"
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.2.4.tar.gz"
-        sha256 = "704772048e44b555ab14ab7d4d166f05b423f08c81b3a41bc87ef04d89792a0d"
-        autoupdate.strategy = "latest_github_tag"
+    [resources.sources.main]
+    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.3.10.tar.gz"
+    sha256 = "8b6d30be069dccb5ea40037b3015ec3f0476b3690bbfc7e67f7fe6ea4e35ebcb"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
     allow_email = true
 
     [resources.install_dir]
+
+    [resources.data_dir]
 
     [resources.permissions]
     main.url = "/"
@@ -64,8 +66,6 @@ ram.runtime = "280M"
 
     [resources.ports]
     main.default = 22300
-
-    [resources.data_dir]
 
     [resources.apt]
     packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
