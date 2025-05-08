@@ -1,38 +1,24 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=5
-
-# Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_systemctl --service=$app --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression "Upgrading source files..."
 
 if $(ynh_compare_current_package_version --comparison lt --version "3.2.11~ynh2")
 then
 	# Purge old root directory's contents
-	ynh_script_progression --message="Removing old files..." --weight=2
+	ynh_script_progression "Removing old files..."
 	tmp=$(mktemp -d)
 	mv -f $install_dir/* $install_dir/.[!.]* $tmp
 	ynh_secure_remove --file="$tmp"
@@ -48,17 +34,14 @@ chown -R $app:www-data "$install_dir/src"
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
-ynh_add_config --template=".env" --destination="$install_dir/.env"
-
-chmod 400 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
 # BUILD
 #=================================================
-ynh_script_progression --message="Building $app..." --weight=10
+ynh_script_progression "Building $app..."
 
 mkdir $install_dir/build
 mkdir $install_dir/build/.yarn
@@ -92,8 +75,8 @@ ynh_secure_remove --file="$install_dir/src"
 pushd $install_dir/build
  	ynh_use_nodejs
 	ynh_exec_warn_less corepack enable && corepack prepare yarn@3.8.3 --activate
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
+	ynh_exec_warn_less ynh_exec_as_app COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
+	ynh_exec_warn_less ynh_exec_as_app yarn cache clean
 	ynh_secure_remove --file="$install_dir/build/.yarn/berry"
 popd
 
@@ -103,23 +86,23 @@ ynh_secure_remove --file="$install_dir/build"
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Note-taking appliction" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="App: Call this for testing"
+ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="App: Call this for testing"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
