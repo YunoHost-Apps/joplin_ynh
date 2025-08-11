@@ -84,8 +84,6 @@ ynh_add_systemd_config
 yunohost service add $app --description="Note-taking appliction" --log="/var/log/$app/$app.log"
 
 #=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1

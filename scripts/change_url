@@ -1,16 +1,12 @@
 #!/bin/bash
 
 #=================================================
-# GENERIC STARTING
-#=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
 
 source _common.sh
 source /usr/share/yunohost/helpers
 
-#=================================================
-# STANDARD MODIFICATIONS
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
@@ -31,8 +27,6 @@ ynh_add_systemd_config
 
 ynh_add_config --template=".env" --destination="$install_dir/.env"
 
-#=================================================
-# GENERIC FINALISATION
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
