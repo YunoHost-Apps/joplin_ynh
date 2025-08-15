@@ -18,6 +18,10 @@ Note taking and to-do application with synchronisation capabilities
 <a href="https://github.com/YunoHost-Apps/joplin_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
 
+
+## Screenshots
+![Screenshot of Joplin](./doc/screenshots/screenshot.png)
+
 ## 📦 Developer info
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/joplin)](https://ci-apps.yunohost.org/ci/apps/joplin/)
