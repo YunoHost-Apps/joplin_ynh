@@ -67,7 +67,7 @@ ram.runtime = "280M"
     main.default = 22300
 
     [resources.apt]
-    packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
+    packages = "postgresql, postgresql-client, python3-bcrypt, rsync, yarn"
 
     [resources.database]
     type = "postgresql"
