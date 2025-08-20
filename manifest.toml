@@ -7,7 +7,7 @@ name = "Joplin"
 description.en = "Note taking and to-do application with synchronisation capabilities"
 description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
 
-version = "3.4.5~ynh1"
+version = "3.4.6~ynh1"
 
 maintainers = []
 
@@ -45,8 +45,8 @@ ram.runtime = "280M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.4.5.tar.gz"
-    sha256 = "8c2afaea337612e05f06e271b993ef35b0c9701b2c24894040d94c16c6592efa"
+    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.4.6.tar.gz"
+    sha256 = "aa6e6f35481bc15e2b1960528d3dda4e77b07c582e9d24b219866a16ded1f7b6"
     autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
