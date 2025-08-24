@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #=================================================
-# GENERIC START
-#=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
 
@@ -36,8 +34,6 @@ ynh_script_progression --message="Restoring the PostgreSQL database..." --weight
 ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
 
 #=================================================
-# SPECIFIC RESTORATION
-#=================================================
 # REINSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Reinstalling dependencies..." --weight=7
@@ -46,8 +42,6 @@ ynh_script_progression --message="Reinstalling dependencies..." --weight=7
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
 
-#=================================================
-# RESTORE SYSTEM CONFIGURATIONS
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
@@ -60,8 +54,6 @@ systemctl enable $app.service --quiet
 
 yunohost service add $app --description="Note-taking appliction" --log="/var/log/$app/$app.log"
 
-#=================================================
-# GENERIC FINALIZATION
 #=================================================
 # RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
 #=================================================
