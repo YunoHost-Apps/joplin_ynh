@@ -72,6 +72,8 @@ popd
 mv $install_dir/build/packages $install_dir
 ynh_secure_remove --file="$install_dir/build"
 
+chown -R $app:$app "$data_dir"
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
