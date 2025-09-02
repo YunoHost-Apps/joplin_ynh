@@ -4,7 +4,7 @@
 # COMMON VARIABLES
 #=================================================
 
-nodejs_version="20"
+#REMOVEME? nodejs_version="20"
 
 #=================================================
 # PERSONAL HELPERS

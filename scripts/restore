@@ -39,7 +39,7 @@ ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./d
 ynh_script_progression --message="Reinstalling dependencies..." --weight=7
 
 # Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+#REMOVEME? ynh_exec_warn_less #REMOVEME? ynh_install_nodejs --#REMOVEME? nodejs_version=$nodejs_version
 ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================
