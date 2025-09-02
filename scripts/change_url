@@ -21,7 +21,7 @@ ynh_script_progression --message="Updating NGINX web server configuration..." --
 
 ynh_change_url_nginx_config
 
-ynh_use_nodejs
+#REMOVEME? ynh_use_nodejs
 
 ynh_add_systemd_config
 
