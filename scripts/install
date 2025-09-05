@@ -12,13 +12,6 @@ ynh_app_setting_set --app=$app --key=admin_pass --value=$admin_pass
 ynh_app_setting_set --app=$app --key=admin_mail --value=$admin_mail
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=7
-
-#REMOVEME? ynh_exec_warn_less #REMOVEME? ynh_install_nodejs --#REMOVEME? nodejs_version=$nodejs_version
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
