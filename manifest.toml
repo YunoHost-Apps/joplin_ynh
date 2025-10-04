@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "joplin"
 name = "Joplin"
-description.en = "Note taking and to-do application with synchronisation capabilities"
-description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
+description.en = "Note taking and to-do with synchronisation capabilities"
+description.fr = "Prise de notes et de tâches avec capacités de synchronisation"
 
 version = "3.3.10~ynh1"
 
@@ -75,4 +75,3 @@ ram.runtime = "280M"
 
     [resources.nodejs]
     version = "22"
-
