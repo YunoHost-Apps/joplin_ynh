@@ -72,3 +72,7 @@ ram.runtime = "280M"
 
     [resources.database]
     type = "postgresql"
+
+    [resources.nodejs]
+    version = "22"
+

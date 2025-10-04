@@ -13,12 +13,9 @@ ynh_restore "$install_dir"
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Restoring data directory..." --weight=2
+ynh_script_progression "Restoring data directory..."
 
-# Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
-ynh_restore_file --origin_path="$data_dir" --not_mandatory
-
-chown -R $app: "$data_dir"
+ynh_restore "$data_dir"
 
 #=================================================
 # RESTORE THE PostgreSQL DATABASE
@@ -32,9 +29,6 @@ ynh_psql_db_shell < ./db.sql
 #=================================================
 ynh_script_progression "Reinstalling dependencies..."
 
-ynh_nodejs_install
-
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
 
 #=================================================

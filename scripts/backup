@@ -15,7 +15,7 @@ ynh_backup "$install_dir"
 # BACKUP THE DATA DIRECTORY
 #=================================================
 
-ynh_backup --src_path="$data_dir" --is_big
+ynh_backup "$data_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
