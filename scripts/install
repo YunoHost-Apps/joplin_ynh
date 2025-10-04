@@ -59,7 +59,7 @@ mv $install_dir/src/packages/server $install_dir/build/packages/server
 
 ynh_replace --match="^.*onenote-converter.*$" --replace=" " --file="$install_dir/build/packages/lib/package.json"
 
-ynh_secure_remove --file="$install_dir/src"
+ynh_safe_rm "$install_dir/src"
 
 pushd $install_dir/build
  	ynh_use_nodejs
@@ -67,11 +67,11 @@ pushd $install_dir/build
 	ynh_exec_warn_less ynh_exec_as_app COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
 	#ynh_exec_warn_less ynh_exec_as_app yarn build
 	ynh_exec_warn_less ynh_exec_as_app yarn cache clean
-	ynh_secure_remove --file="$install_dir/build/.yarn/berry"
+	ynh_safe_rm "$install_dir/build/.yarn/berry"
 popd
 
 mv $install_dir/build/packages $install_dir
-ynh_secure_remove --file="$install_dir/build"
+ynh_safe_rm "$install_dir/build"
 
 #=================================================
 # SYSTEM CONFIGURATION
