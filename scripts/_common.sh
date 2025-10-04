@@ -4,7 +4,7 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-nodejs_version="20"
+nodejs_version="22"
 
 function bcrypt_password() {
   echo -n "$1" | \
