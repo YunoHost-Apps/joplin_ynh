@@ -68,7 +68,7 @@ mv $install_dir/src/packages/utils $install_dir/build/packages/utils
 mv $install_dir/src/packages/lib $install_dir/build/packages/lib
 mv $install_dir/src/packages/server $install_dir/build/packages/server
 
-ynh_replace_string --match_string="^.*onenote-converter.*$" --replace_string=" " --target_file="$install_dir/build/packages/lib/package.json"
+ynh_replace --match="^.*onenote-converter.*$" --replace=" " --file="$install_dir/build/packages/lib/package.json"
 
 ynh_secure_remove --file="$install_dir/src"
 
