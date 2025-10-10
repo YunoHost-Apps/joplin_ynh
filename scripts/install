@@ -12,13 +12,6 @@ ynh_app_setting_set --app=$app --key=admin_pass --value=$admin_pass
 ynh_app_setting_set --app=$app --key=admin_mail --value=$admin_mail
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=7
-
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
@@ -62,7 +55,6 @@ ynh_replace_string --match_string="^.*onenote-converter.*$" --replace_string=" "
 ynh_secure_remove --file="$install_dir/src"
 
 pushd $install_dir/build
- 	ynh_use_nodejs
 	ynh_exec_warn_less corepack enable && corepack prepare yarn@4.9.2 --activate
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cache clean
