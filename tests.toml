@@ -19,3 +19,4 @@ test_format = 1.0
     # -------------------------------
 
     test_upgrade_from.cef7030e.name = "Upgrade from 3.1.19"
+    test_upgrade_from.f37ee0c6.name = "Upgrade from 3.4.7~ynh1"
