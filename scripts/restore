@@ -29,7 +29,7 @@ ynh_psql_db_shell < ./db.sql
 #=================================================
 ynh_script_progression "Reinstalling dependencies..."
 
-ynh_exec_warn_less corepack enable && corepack prepare yarn@latest --activate
+ynh_hide_warnings corepack enable && corepack prepare yarn@4.9.2 --activate
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
