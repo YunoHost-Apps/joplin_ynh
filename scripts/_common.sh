@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #=================================================
-# PERSONAL HELPERS
+# COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
 function bcrypt_password() {

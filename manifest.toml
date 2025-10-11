@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "joplin"
 name = "Joplin"
-description.en = "Note taking and to-do application with synchronisation capabilities"
-description.fr = "Application de prise de notes et de tâches avec capacités de synchronisation"
+description.en = "Note taking and to-do with synchronisation capabilities"
+description.fr = "Prise de notes et de tâches avec capacités de synchronisation"
 
 version = "3.4.12~ynh1"
 
@@ -19,6 +19,7 @@ code = "https://github.com/laurent22/joplin/"
 
 [integration]
 yunohost = ">= 12.1.17"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 
