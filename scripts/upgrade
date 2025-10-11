@@ -48,7 +48,6 @@ mkdir $install_dir/build/.yarn
 mkdir $install_dir/build/packages
 chown -R $app:www-data "$install_dir/build"
 
-mv $install_dir/src/.yarn/plugins $install_dir/build/.yarn/plugins
 mv $install_dir/src/.yarn/releases $install_dir/build/.yarn/releases
 mv $install_dir/src/.yarn/patches $install_dir/build/.yarn/patches
 mv $install_dir/src/package.json $install_dir/build

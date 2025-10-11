@@ -7,7 +7,7 @@ name = "Joplin"
 description.en = "Note taking and to-do with synchronisation capabilities"
 description.fr = "Prise de notes et de tâches avec capacités de synchronisation"
 
-version = "3.3.10~ynh1"
+version = "3.4.12~ynh1"
 
 maintainers = []
 
@@ -46,9 +46,9 @@ ram.runtime = "280M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.3.10.tar.gz"
-    sha256 = "8b6d30be069dccb5ea40037b3015ec3f0476b3690bbfc7e67f7fe6ea4e35ebcb"
-    autoupdate.strategy = "latest_github_tag"
+    url = "https://github.com/laurent22/joplin/archive/refs/tags/v3.4.12.tar.gz"
+    sha256 = "c00ac2540371543d85b4362fd716ff4748f18a61276d137cad91d318cd30f744"
+    autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
     allow_email = true
@@ -68,7 +68,7 @@ ram.runtime = "280M"
     main.default = 22300
 
     [resources.apt]
-    packages = "postgresql, postgresql-client, python3-bcrypt, rsync"
+    packages = "postgresql, postgresql-client, python3-bcrypt, rsync, yarn"
 
     [resources.database]
     type = "postgresql"
