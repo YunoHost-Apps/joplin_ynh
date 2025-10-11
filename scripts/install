@@ -55,7 +55,7 @@ ynh_replace --match="^.*onenote-converter.*$" --replace=" " --file="$install_dir
 ynh_safe_rm "$install_dir/src"
 
 pushd $install_dir/build
-	ynh_hide_warnings corepack enable && corepack prepare yarn@latest --activate
+	ynh_hide_warnings corepack enable && corepack prepare yarn@4.9.2 --activate
 	ynh_hide_warnings ynh_exec_as_app COREPACK_ENABLE_DOWNLOAD_PROMPT=0  BUILD_SEQUENCIAL=1 yarn install --inline-builds
 	#ynh_hide_warnings ynh_exec_as_app yarn build
 	ynh_hide_warnings ynh_exec_as_app yarn cache clean
