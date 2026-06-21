@@ -18,7 +18,7 @@ admindoc = "https://joplinapp.org/help/"
 code = "https://github.com/laurent22/joplin/"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -74,4 +74,4 @@ ram.runtime = "280M"
     type = "postgresql"
 
     [resources.nodejs]
-    version = "22"
+    version = "24"
